@@ -5,5 +5,9 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-	return <>{children}</>;
+	return (
+		<html lang="en" data-google-analytics-opt-out="">
+			<body>{children}</body>
+		</html>
+	);
 }
