@@ -22,3 +22,7 @@ If you're using Node 16 or 18, uncomment the code in `lib/auth.ts`. This is not 
 
 [Username and password auth in Next.js App Router](https://v3.lucia-auth.com/tutorials/username-and-password/nextjs-app)
 にあったサンプルを、とりあえずクローンして実行してみた。
+
+モジュールを全部更新した。
+
+細かいエラーと警告を治して `pnpm build` も通るようにした。
