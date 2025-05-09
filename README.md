@@ -2,7 +2,7 @@
 
 Uses SQLite (`main.db`) database.
 
-```
+```sh
 pnpm i
 pnpm dev
 ```
@@ -11,7 +11,7 @@ pnpm dev
 
 If you're using Node 16 or 18, uncomment the code in `lib/auth.ts`. This is not required in Node 20, Bun, and Cloudflare Workers.
 
-```ts
+```typescript
 // import { webcrypto } from "crypto";
 // globalThis.crypto = webcrypto as Crypto;
 ```
