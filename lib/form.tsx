@@ -1,25 +1,25 @@
 "use client";
 
-import { useFormState } from "react-dom";
+import React from "react";
 
 export function Form({
-	children,
-	action
+    children,
+    action
 }: {
-	children: React.ReactNode;
-	action: (prevState: any, formData: FormData) => Promise<ActionResult>;
+    children: React.ReactNode;
+    action: (prevState: any, formData: FormData) => Promise<ActionResult>;
 }) {
-	const [state, formAction] = useFormState(action, {
-		error: null
-	});
-	return (
-		<form action={formAction}>
-			{children}
-			<p>{state.error}</p>
-		</form>
-	);
+    const [state, formAction] = React.useActionState(action, {
+        error: null
+    });
+    return (
+        <form action={formAction}>
+            {children}
+            <p>{state.error}</p>
+        </form>
+    );
 }
 
 export interface ActionResult {
-	error: string | null;
+    error: string | null;
 }
