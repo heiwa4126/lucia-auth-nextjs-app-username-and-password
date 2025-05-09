@@ -18,6 +18,10 @@ If you're using Node 16 or 18, uncomment the code in `lib/auth.ts`. This is not 
 
 ---
 
+↑ から上はオリジナルのまま
+
+## 自分用メモ
+
 (2025-05)
 
 [Username and password auth in Next.js App Router](https://v3.lucia-auth.com/tutorials/username-and-password/nextjs-app)
@@ -26,3 +30,30 @@ If you're using Node 16 or 18, uncomment the code in `lib/auth.ts`. This is not 
 モジュールを全部更新した。
 
 細かいエラーと警告を治して `pnpm build` も通るようにした。
+
+## メモ: main.db
+
+```console
+sqlite> .tables
+
+session  user
+
+sqlite> SELECT sql FROM sqlite_master WHERE type = 'table' AND name = 'user';
+
+CREATE TABLE user (
+    id TEXT NOT NULL PRIMARY KEY,
+    username TEXT NOT NULL UNIQUE,
+    password_hash TEXT NOT NULL
+)
+
+sqlite> SELECT sql FROM sqlite_master WHERE type = 'table' AND name = 'session';
+
+CREATE TABLE session (
+    id TEXT NOT NULL PRIMARY KEY,
+    expires_at INTEGER NOT NULL,
+    user_id TEXT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES user(id)
+)
+```
+
+<https://v3.lucia-auth.com/database/sqlite> 参照
