@@ -1,13 +1,13 @@
 import Link from "next/link";
 
-import { db } from "@/lib/db";
-import { hash } from "@node-rs/argon2";
-import { cookies } from "next/headers";
 import { lucia, validateRequest } from "@/lib/auth";
-import { redirect } from "next/navigation";
+import { db } from "@/lib/db";
 import { Form } from "@/lib/form";
-import { generateId } from "lucia";
+import { hash } from "@node-rs/argon2";
 import { SqliteError } from "better-sqlite3";
+import { generateId } from "lucia";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
 import type { ActionResult } from "@/lib/form";
 
@@ -73,7 +73,7 @@ async function signup(_: any, formData: FormData): Promise<ActionResult> {
 
 		const session = await lucia.createSession(userId, {});
 		const sessionCookie = lucia.createSessionCookie(session.id);
-		cookies().set(sessionCookie.name, sessionCookie.value, sessionCookie.attributes);
+		(await cookies()).set(sessionCookie.name, sessionCookie.value, sessionCookie.attributes);
 	} catch (e) {
 		if (e instanceof SqliteError && e.code === "SQLITE_CONSTRAINT_UNIQUE") {
 			return {

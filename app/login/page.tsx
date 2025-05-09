@@ -1,11 +1,11 @@
 import Link from "next/link";
 
+import { lucia, validateRequest } from "@/lib/auth";
 import { db } from "@/lib/db";
+import { Form } from "@/lib/form";
 import { verify } from "@node-rs/argon2";
 import { cookies } from "next/headers";
-import { lucia, validateRequest } from "@/lib/auth";
 import { redirect } from "next/navigation";
-import { Form } from "@/lib/form";
 
 import type { DatabaseUser } from "@/lib/db";
 import type { ActionResult } from "@/lib/form";
@@ -25,7 +25,7 @@ export default async function Page() {
 				<label htmlFor="password">Password</label>
 				<input type="password" name="password" id="password" />
 				<br />
-				<button>Continue</button>
+				<button type="button">Continue</button>
 			</Form>
 			<Link href="/signup">Create an account</Link>
 		</>
@@ -84,6 +84,6 @@ async function login(_: any, formData: FormData): Promise<ActionResult> {
 
 	const session = await lucia.createSession(existingUser.id, {});
 	const sessionCookie = lucia.createSessionCookie(session.id);
-	cookies().set(sessionCookie.name, sessionCookie.value, sessionCookie.attributes);
+	(await cookies()).set(sessionCookie.name, sessionCookie.value, sessionCookie.attributes);
 	return redirect("/");
 }

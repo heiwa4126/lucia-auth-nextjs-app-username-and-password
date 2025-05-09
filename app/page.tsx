@@ -1,7 +1,7 @@
 import { lucia, validateRequest } from "@/lib/auth";
 import { Form } from "@/lib/form";
-import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
 import type { ActionResult } from "@/lib/form";
 
@@ -33,6 +33,6 @@ async function logout(): Promise<ActionResult> {
 	await lucia.invalidateSession(session.id);
 
 	const sessionCookie = lucia.createBlankSessionCookie();
-	cookies().set(sessionCookie.name, sessionCookie.value, sessionCookie.attributes);
+	(await cookies()).set(sessionCookie.name, sessionCookie.value, sessionCookie.attributes);
 	return redirect("/login");
 }
