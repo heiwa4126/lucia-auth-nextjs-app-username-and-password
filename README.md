@@ -56,4 +56,11 @@ CREATE TABLE session (
 )
 ```
 
-<https://v3.lucia-auth.com/database/sqlite> 参照
+参照:
+
+- [lib/db.ts](lib/db.ts)
+- <https://v3.lucia-auth.com/database/sqlite>
+
+いまのままだとプロジェクトルートに `main.db` が出来るので、
+Vercel とか Cloudflare Workers では動かない。
+ローカルで `pnpm dev` で動くだけ。
