@@ -15,7 +15,7 @@ export default async function Page() {
 			<h1>Hi, {user.username}!</h1>
 			<p>Your user ID is {user.id}.</p>
 			<Form action={logout}>
-				<button type="button">Sign out</button>
+				<button type="submit">Sign out</button>
 			</Form>
 		</>
 	);

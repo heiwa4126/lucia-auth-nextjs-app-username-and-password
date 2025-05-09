@@ -25,7 +25,7 @@ export default async function Page() {
 				<label htmlFor="password">Password</label>
 				<input type="password" name="password" id="password" />
 				<br />
-				<button type="button">Continue</button>
+				<button type="submit">Continue</button>
 			</Form>
 			<Link href="/signup">Create an account</Link>
 		</>
