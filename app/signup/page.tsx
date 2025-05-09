@@ -26,14 +26,14 @@ export default async function Page() {
 				<label htmlFor="password">Password</label>
 				<input type="password" name="password" id="password" />
 				<br />
-				<button>Continue</button>
+				<button type="button">Continue</button>
 			</Form>
 			<Link href="/login">Sign in</Link>
 		</>
 	);
 }
 
-async function signup(_: any, formData: FormData): Promise<ActionResult> {
+async function signup(_: unknown, formData: FormData): Promise<ActionResult> {
 	"use server";
 	const username = formData.get("username");
 	// username must be between 4 ~ 31 characters, and only consists of lowercase letters, 0-9, -, and _
@@ -45,13 +45,14 @@ async function signup(_: any, formData: FormData): Promise<ActionResult> {
 		!/^[a-z0-9_-]+$/.test(username)
 	) {
 		return {
-			error: "Invalid username",
+			error:
+				"Invalid username. Username must be a string between 3 and 31 characters long and can only contain lowercase letters, numbers, underscores, or hyphens.",
 		};
 	}
 	const password = formData.get("password");
 	if (typeof password !== "string" || password.length < 6 || password.length > 255) {
 		return {
-			error: "Invalid password",
+			error: "Invalid password. Password must be a string between 6 and 255 characters long.",
 		};
 	}
 
