@@ -15,3 +15,10 @@ If you're using Node 16 or 18, uncomment the code in `lib/auth.ts`. This is not 
 // import { webcrypto } from "crypto";
 // globalThis.crypto = webcrypto as Crypto;
 ```
+
+---
+
+(2025-05)
+
+[Username and password auth in Next.js App Router](https://v3.lucia-auth.com/tutorials/username-and-password/nextjs-app)
+にあったサンプルを、とりあえずクローンして実行してみた。
